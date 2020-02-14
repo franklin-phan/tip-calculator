@@ -1,0 +1,79 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin:4em;
+    background-image: url('./carhip.png');
+    background-position-x: 20%;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position-y: 50px;
+    background-color:#ccf5ff;
+
+}
+.hippo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+form > *{
+    /* border:0.25em solid black; */
+    text-align: center;
+    padding: 1em; 
+}
+form{
+    margin: auto;
+}
+.title{ 
+    grid-area: l; 
+}
+.bill{
+    grid-area: b;
+}
+
+.tip-percent{
+    grid-area: t;
+}
+.tip-amount{
+    grid-area: a;
+}
+
+.people{
+    grid-area: p;
+}
+
+#display-tip{
+    grid-area: i;
+}
+
+#display-tip-perc{
+    grid-area: z;
+}
+#display-total{
+    grid-area: o;
+}
+
+#display-pp{
+    grid-area: e;
+}
+
+form{
+    width: 16vw;
+    height:10vw;
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 45vw;
+    margin-top: 18vw;
+    /* 
+    The named areas below define where elements with
+    those names are placed on the grid. 
+    */
+    grid-template-areas: "l l"
+                         "b o"
+                         "t i"
+                         "a z"
+                         "p e";
+
+  }

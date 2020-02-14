@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html LANG='EN'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+        <link rel="stylesheet" href="styles.css">
+        <title>Tip Calculator</title>
+    </head>
+    <body>
+        <form>
+            <div class="title">Tippopotamus</div>
+            <div class="bill">
+                <label for="bill">Bill:</label>
+                <input type="number" name="bill" id="bill">
+            </div>
+            <div class="tip-percent">
+                <label for="tip-percent">Tip Percentage:</label>
+                <input type="number" name="tip-percent" id="tip-percent">
+            </div>
+            <div class="tip-amount">
+                    <label for="tip-amount">Tip Amount in $:</label>
+                    <input type="number" name="tip-amount" id="tip-amount">
+                </div>
+            <div class="people">
+                <label for="people"># of People:</label>
+                <input type="number" name="people" id="people">
+            </div>
+            <div class="display-tip-amount" id="display-tip-amount">Tip Amount:</div>
+            <div class="display-tip-percent" id="display-tip-percent">Tip Percentage:</div>
+            <div class="display-total" id="display-total">Total:</div>
+            <div class="display-pp" id="display-pp">Per Person:</div>
+        </form>
+
+        <script>
+            const inputBill = document.getElementById('bill')
+            const inputTipPercent = document.getElementById('tip-percent')
+            const inputTipAmount = document.getElementById('tip-amount')
+            const inputPeople = document.getElementById('people')
+
+            const displayTipAmount = document.getElementById('display-tip-amount')
+            const displayTipPercent = document.getElementById('display-tip-percent')
+            const displayTotal = document.getElementById('display-total')
+            const displayPP = document.getElementById('display-pp')
+            
+            let bill = 0
+            let tipPercent = 0
+            let tipAmount = 0
+            let people = 1
+            
+            inputBill.addEventListener("input", function(){
+                bill = parseInt(inputBill.value)
+                console.log(bill)
+                
+               
+
+                calculateTip()
+            
+            })
+
+            inputTipPercent.addEventListener("input", function(){
+                tipPercent = parseInt(inputTipPercent.value)
+                console.log(tipPercent)
+                calculateTip()
+            })
+
+            inputTipAmount.addEventListener("input", function(){
+                tipAmount = parseInt(inputTipAmount.value)
+
+                // is this a number? 
+
+                const percent = tipAmount / bill * 100
+
+                tipPercent = percent
+
+                console.log('---------------')
+                console.log(tipAmount)
+                // calculateTip()
+                calculateTipFromAmount()
+            })
+
+            inputPeople.addEventListener("input", function(){
+                people = parseInt(inputPeople.value)
+                if (people === 0){
+                    people =1
+                }
+    
+                console.log(people)
+                calculateTip()
+                calculateTipFromAmount()
+
+            })
+
+            /* 
+
+
+            */
+            function calculateTipFromAmount(){
+                let total = bill + tipAmount
+                let tipPercent = tipAmount / bill * 100 
+                let pp = total / people
+
+                inputTipPercent.value = tipPercent
+                displayTotal.innerHTML = `Total: $${total.toFixed(2)}`
+                displayTipAmount.innerHTML = `Tip Percent: ${tipPercent.toFixed(2)}%`
+                displayTipPercent.innerHTML = `Tip: $${tipAmount.toFixed(2)}`
+                displayPP.innerHTML = `Per Person: $${pp.toFixed(2)}`
+            }
+            function calculateTip() {
+                let tipAmount = bill * tipPercent / 100
+
+                let total = bill + tipAmount
+
+                // let tipPercent = tipAmount / total
+                
+                
+                let pp = total / people
+                inputTipAmount.value = tipAmount
+                displayTotal.innerHTML = `Total: $${total.toFixed(2)}`
+                displayTipAmount.innerHTML = `Tip Percent: ${tipPercent.toFixed(2)}%`
+                displayTipPercent.innerHTML = `Tip: $${tipAmount.toFixed(2)}`
+                displayPP.innerHTML = `Per Person: $${pp.toFixed(2)}`
+            }
+
+        </script>
+    </body>
+</html>
